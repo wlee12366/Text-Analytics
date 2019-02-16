@@ -26,7 +26,6 @@ for key in ["NHL", "Destiny"]:
     for j in range(0, len(dfColl[key])):
         if  not np.isnan(dfColl[key].iloc[j][8]): # Instead of looking at all body, see if we extracted from it first to see if compound is nan
             doc_complete.append(dfColl[key].iloc[j][1].rstrip("]").lstrip("[").strip("'").strip())
-        # https://stackoverflow.com/questions/3704918/python-way-to-restart-a-for-loop-similar-to-continue-for-while-loops
         else:
             continue
         
@@ -42,27 +41,13 @@ for key in ["NHL", "Destiny"]:
     removeKey = [clean(key).split()]  
     removeKey = removeKey[0]
     
-    """
-    Doesn't remove the second word in a title for some reason with "remove"
-    # https://stackoverflow.com/questions/29771168/how-to-remove-words-from-a-list-in-python
-    for i in range(0, len(doc_clean)):
-        for word in doc_clean[i]:
-            if word in removeKey:
-                doc_clean[i].remove(word)
-    """
-    
-    # https://stackoverflow.com/questions/3845423/remove-empty-strings-from-a-list-of-strings
-    # Replace is an important function
     for i in range(0, len(doc_clean)):
         for j, word in enumerate(doc_clean[i]):
             if word in removeKey:
                 doc_clean[i][j] = word.replace(word, "")
         doc_clean[i] = list(filter(None, doc_clean[i]))
             
-    
-    # for i in range(0, len(doc_clean)):
-    #    doc_clean[i].remove("".join(key.split()).lower())
-    
+  
     # Creating the term dictionary of our courpus, where every unique term is assigned an index. 
     dictionary = corpora.Dictionary(doc_clean)
     
@@ -86,7 +71,5 @@ for key in ["NHL", "Destiny"]:
         ldamodel = Lda(doc_term_matrix, num_topics = 6, id2word = dictionary, passes = 50)
         print(ldamodel.print_topics(num_topics = 6, num_words= 5))
     
-# http://miriamposner.com/blog/very-basic-strategies-for-interpreting-results-from-the-topic-modeling-tool/
-# https://www.machinelearningplus.com/nlp/topic-modeling-gensim-python/#17howtofindtheoptimalnumberoftopicsforlda
 
     
