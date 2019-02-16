@@ -57,7 +57,7 @@ for key in ["NHL", "Destiny"]:
     # Creating the object for LDA model using gensim library
     Lda = gensim.models.ldamodel.LdaModel
     
-    # Running and Trainign LDA model on the document term matrix.
+    # Running and Training LDA model on the document term matrix.
     if len(doc_clean) <= 100:
         ldamodel = Lda(doc_term_matrix, num_topics=4, id2word = dictionary, passes = 50)
         print(ldamodel.print_topics(num_topics=4, num_words= 5))
