@@ -3,10 +3,6 @@
 Created on Thu Oct 11 00:14:18 2018
 """
 
-# https://www.reddit.com/r/redditdev/comments/8suiqu/scrape_all_submissions_and_comments_made_by_a/
-# https://www.reddit.com/r/pushshift/comments/89pxra/pushshift_api_with_large_amounts_of_data/
-# https://api.pushshift.io/reddit/comment/search?subreddit=gamereviews&limit=1000&sort=desc
-
 import pandas as pd
 import json
 import requests
@@ -66,12 +62,9 @@ listSubreddits = ["https://api.pushshift.io/reddit/comment/search?subreddit=game
                   "https://api.pushshift.io/reddit/comment/search?subreddit=games&limit=1000&sort=desc"]
 notSet = "[^a-zA-Z]"
 
-
-# https://www.reddit.com/r/pushshift/comments/89pxra/pushshift_api_with_large_amounts_of_data/
 dfColl = {}
 
-
-count = 1
+count = 1 # Initialize
 
 
 for link in listSubreddits:
