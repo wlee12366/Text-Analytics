@@ -73,7 +73,7 @@ for key in dfColl.keys():
         for i, sentence in enumerate(stringSep):
             if len(re.findall(notSet + key + notSet, sentence,re.IGNORECASE)) > 0:
                 stringExam.append(sentence)
-                stringPos.append(i) # https://stackoverflow.com/questions/364621/how-to-get-items-position-in-a-list
+                stringPos.append(i)
 
         
         if len(stringCom) / len(stringSep) < math.floor((math.sqrt(len(stringSep)) - 1) * 10) / 10 and len(stringSep) <= 10:
@@ -85,17 +85,10 @@ for key in dfColl.keys():
         elif len(stringCom) / len(stringSep) < .1 and len(stringSep) >= 20:
             propCheck = False
             snt = sentiment_scores("")
-            
-        """
-        Want to give room to explain but also need to be wary. Go conservative.
-        Keep conservative. As long as they mentioned the game not only once in a longer post,
-        it should be fine if we extract only the perceived relevant chunks according to the algorithm
-        """
+
         
         if propCheck:
             for i in stringPos:
-                    # Check to make sure i + 1 and i - 1 is within range.
-                    # If i + 1 and i - 1 is equal to any i, remove i + 1 or i - 1
                 if i != 0:
                     if not(i - 1 in strExValid):
                         strExValid.append(stringSep[i - 1])
